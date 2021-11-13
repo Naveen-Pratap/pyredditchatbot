@@ -3,11 +3,10 @@ Utility functions for  pyredditchatbot
 """
 
 import random
+from typing import Sequence
 
-# TODO: Typing to sequence
-def get_random_quote(
-        quotes
-):
+
+def get_random_quote(quotes: Sequence[str]) -> str:
     """
     Gets a random quote from a sequence of quotes.
 
@@ -19,7 +18,7 @@ def get_random_quote(
     return random.choice(quotes)
 
 
-def default_cleaner(quotes):
+def default_cleaner(quotes: Sequence[str]) -> Sequence[str]:
     """
     Default cleaner function used by bot instance.
 

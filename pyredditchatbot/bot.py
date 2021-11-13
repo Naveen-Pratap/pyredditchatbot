@@ -6,9 +6,11 @@ import logging
 import os
 import re
 import time
+from typing import Sequence
 
 import praw
 import prawcore
+
 
 from pyredditchatbot.exceptions import BotCredentialError, QuotesNotFoundError
 from pyredditchatbot.utils import get_random_quote, default_cleaner
@@ -23,14 +25,14 @@ class Bot:
 
     def __init__(
             self,
-            client_id,
-            client_secret,
-            username,
-            password,
-            subreddit,
-            key_phrase,
-            user_agent=None,
+            client_id: str,
+            client_secret: str,
+            username: str,
+            password: str,
+            key_phrase: str,
+            subreddit: str,
             quote_cleaner=None,
+            user_agent=None,
             **praw_config
     ):
         """
@@ -115,7 +117,7 @@ class Bot:
                 "permissions."
             )
 
-    def add_quotes(self, quotes, clean=True):
+    def add_quotes(self, quotes: Sequence[str], clean: bool = True):
         """
         Add quotes to reddit instance
 
@@ -128,7 +130,7 @@ class Bot:
         else:
             self.quotes = quotes
 
-    def add_quotes_file(self, file_path, clean=True):
+    def add_quotes_file(self, file_path: str, clean: bool = True):
         """
         Add quotes from a file to reddit instance.
 
@@ -155,7 +157,4 @@ class Bot:
         """
         temp_file_path = os.path.join(os.getcwd(), "quotes.txt")
         logger.debug(f"Looking for quotes.txt in {temp_file_path}")
-        if os.path.exists(temp_file_path):
-            self.add_quotes_file(temp_file_path)
-        else:
-            raise QuotesNotFoundError("Found 0 quotes. Did you forget to add them?")
+        self.add_quotes_file(temp_file_path)
