@@ -1,6 +1,6 @@
 import random
 
-
+# TODO: Typing to sequence
 def get_random_quote(
         quotes: list
 ) -> str:
@@ -15,4 +15,5 @@ def get_random_quote(
 
 
 def default_cleaner(quotes):
+    quotes = [q.strip() for q in quotes if q]
     return quotes
