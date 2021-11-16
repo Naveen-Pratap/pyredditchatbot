@@ -11,7 +11,6 @@ from typing import Sequence
 import praw
 import prawcore
 
-
 from pyredditchatbot.exceptions import BotCredentialError, QuotesNotFoundError
 from pyredditchatbot.utils import get_random_quote, default_cleaner
 
